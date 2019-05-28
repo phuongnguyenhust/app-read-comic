@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@android:color/black"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:id="@+id/drawer_layout">
+
+    <ss.com.bannerslider.Slider
+        android:id="@+id/banner_slider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </ss.com.bannerslider.Slider>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:weightSum="4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/txt_comic"
+        android:text="NEW COMIC (10)"
+        android:textSize="20sp"
+        android:textColor="@color/textColor"
+        android:layout_weight="2"
+        android:textStyle="bold"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="3dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="2"
+            android:background="@drawable/horizontal_line" />
+</LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_comic"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+</LinearLayout>
