@@ -23,4 +23,20 @@ public class Common {
         StringBuilder finalResult = new StringBuilder(name.length() > 15 ? name.substring(0, 15)+"...": name);
         return finalResult.toString();
     }
+
+    public static String[] categories = {
+        "Action",
+        "manga",
+            "complete",
+            "cooking",
+            "Drama",
+            "Romance",
+            "School life",
+            "Sports",
+            "Top Read"
+
+
+
+
+    };
 }

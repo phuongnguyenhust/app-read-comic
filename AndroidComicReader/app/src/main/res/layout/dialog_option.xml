@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="500dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="8dp">
+
+    <RelativeLayout
+        android:padding="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+     <!--   <AutoCompleteTextView
+            android:id="@+id/txt_category"
+            android:hint="Enter your category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <android.support.design.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_marginTop="16dp"
+            android:layout_below="@+id/txt_category"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.design.chip.ChipGroup>
+-->
+        <EditText
+            android:id="@+id/edit_search_category"
+            android:hint="Enter name"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

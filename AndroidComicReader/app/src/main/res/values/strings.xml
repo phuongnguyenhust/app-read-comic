@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AndroidComicReader</string>
+    <string name="app">All COMIC</string>
+
 </resources>

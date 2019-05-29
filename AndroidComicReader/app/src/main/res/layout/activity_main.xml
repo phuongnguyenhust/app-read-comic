@@ -14,23 +14,24 @@
         android:layout_height="wrap_content"
         android:padding="16dp"
         android:background="@color/textColor"
-        android:weightSum="6"
+        android:weightSum="9"
         >
         <TextView
-            android:layout_width="match_parent"
+            android:text="App Comic"
+            android:layout_width="0dp"
+            android:layout_weight="8"
             android:layout_height="match_parent"
             android:textColor="@color/cardview_dark_background"
-            android:text="APP COMIC"
             android:textAlignment="center"
             android:layout_gravity="center_horizontal"
             android:textSize="60px"/>
+
         <ImageView
             android:id="@+id/btn_show_filter_search"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@drawable/ic_search_gray_24dp"
-            />
+            android:src="@drawable/ic_search_gray_24dp" />
     </LinearLayout>
 
     <ss.com.bannerslider.Slider

@@ -65,95 +65,6 @@ public class ViewDetail extends AppCompatActivity {
         next = findViewById(R.id.chapter_next);
         back = findViewById(R.id.chapter_back);
 
-//        final AlertDialog dialog = new SpotsDialog.Builder().setContext(this).setMessage("Please wait...").setCancelable(false).build();
-//        dialog.show();
-//        String str1 = " Dragon Ball";
-//        String str2 = "Chapter 1 : Bloomers and the Monkey King";
-//        if((Common.selected_comic.getName().equals(str1) )&& (Common.selected_chapter.getName().equals(str2))){
-//            c.moveToFirst();
-//            while ((!c.isAfterLast())&& (c.getInt(2) == 13)){
-//                Link link = new Link(c.getInt(0), c.getString(1), 13);
-//                linkList.add(link);
-//                c.moveToNext();
-//
-//            }
-//
-//            adapter = new MyViewPagerAdapter(ViewDetail.this, linkList);
-//            myViewPager.setAdapter(adapter);
-//
-//
-//        }
-
-//        switch (Common.selected_comic.getName()){
-//            case " Dragon Ball" :
-//            {
-//                switch (Common.selected_chapter.getName()) {
-//                    case "Chapter 1 : Bloomers and the Monkey King" :
-//                    {
-////                        back.setOnClickListener(new View.OnClickListener() {
-////                            @Override
-////                            public void onClick(View view) {
-////                                if (Common.chapter_index == 0) {
-////                                    Toast.makeText(ViewDetail.this, "You are reading chapter", Toast.LENGTH_SHORT).show();
-////
-////                                } else {
-//                                  //  Common.chapter_index--;
-//                                  //  fetchLinks(Common.chapterList.get(Common.chapter_index).getID());
-//
-//                                   c.moveToFirst();
-//                                    while ((!c.isAfterLast())&& (c.getInt(2) == 13)){
-//                                        Link link = new Link(c.getInt(0), c.getString(1), 13);
-//                                        linkList.add(link);
-//                                        c.moveToNext();
-//
-//                                    }
-//
-//                                    adapter = new MyViewPagerAdapter(ViewDetail.this, linkList);
-//                                    myViewPager.setAdapter(adapter);
-//
-//                                    txt_chapter_name.setText(Common.formatString(Common.selected_chapter.getName()));
-//
-//                                    //Create book Flip page
-//                                    BookFlipPageTransformer bookFlipPageTransformer = new BookFlipPageTransformer();
-//                                    bookFlipPageTransformer.setScaleAmountPercent(10f);
-//                                    myViewPager.setPageTransformer(true, bookFlipPageTransformer);
-//                                    dialog.dismiss();
-//
-//                                    adapter.notifyDataSetChanged();
-//                                    break;
-//
-//                     }
-//
-//                    case "k":
-//                        break;
-//
-//                }
-//                    //    });
-//
-//                        next.setOnClickListener(new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View v) {
-//                                if (Common.chapter_index == Common.chapterList.size() - 1) // if user in last chapter but press nẽt
-//                                {
-//                                    Toast.makeText(ViewDetail.this, "You are reading chapter", Toast.LENGTH_SHORT).show();
-//
-//                                } else {
-//                                    Common.chapter_index++;
-//                                  //  fetchLinks(Common.chapterList.get(Common.chapter_index).getID());
-//
-//                                }
-//                            }
-//                        });
-//
-
-
-
- //           }
-        //}
-
-
-//}
-
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -161,7 +72,7 @@ public class ViewDetail extends AppCompatActivity {
                     Toast.makeText(ViewDetail.this, "You are reading first chapter", Toast.LENGTH_SHORT).show();
 
                 }else {
-                    Common.chapter_index--;
+                    Common.chapter_index =  Common.chapter_index -1;
                     fetchLinks(Common.chapterList.get(Common.chapter_index).getID());
 
                 }
@@ -216,73 +127,4 @@ public class ViewDetail extends AppCompatActivity {
     }
 
 
-
-
-//    private void fetchLinks(int id) {
-//        final AlertDialog dialog = new SpotsDialog.Builder().setContext(this).setMessage("Please wait...").setCancelable(false).build();
-//        dialog.show();
-//
-//        compositeDisposable.add(iComicAPI.getImageList(id)
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe(new Consumer<List<Link>>() {
-//                               @Override
-//                               public void accept(List<Link> links) throws Exception {
-//                                   MyViewPagerAdapter adapter = new MyViewPagerAdapter(getBaseContext(), links);
-//                                   myViewPager.setAdapter(adapter);
-//
-//                                   txt_chapter_name.setText(Common.formatString(Common.selected_chapter.getName()));
-//
-//                                   //Create book Flip page
-//                                   BookFlipPageTransformer bookFlipPageTransformer = new BookFlipPageTransformer();
-//                                   bookFlipPageTransformer.setScaleAmountPercent(10f);
-//                                   myViewPager.setPageTransformer(true, bookFlipPageTransformer);
-//                                  // dialog.dismiss();
-//
-//
-//                               }
-//                           }, new Consumer<Throwable>() {
-//                               @Override
-//                               public void accept(Throwable throwable) throws Exception {
-//                                   Toast.makeText(ViewDetail.this, "This chapter í being tránlating", Toast.LENGTH_LONG).show();
-//                                   dialog.dismiss();
-//                               }
-//                           }
-//                ));
-//
   }
-
- /*   private void fetchLinks(int id) {
-        final AlertDialog dialog = new SpotsDialog.Builder().setContext(this).setMessage("Please wait...").setCancelable(false).build();
-        dialog.show();
-
-        compositeDisposable.add(iComicAPI.getImageList(id)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<Link>>() {
-                               @Override
-                               public void accept(List<Link> links) throws Exception {
-                                   MyViewPagerAdapter adapter = new MyViewPagerAdapter(getBaseContext(), links);
-                                   myViewPager.setAdapter(adapter);
-
-                                   txt_chapter_name.setText(Common.formatString(Common.selected_chapter.getName()));
-
-                                   //Create book Flip page
-                                   BookFlipPageTransformer bookFlipPageTransformer = new BookFlipPageTransformer();
-                                   bookFlipPageTransformer.setScaleAmountPercent(10f);
-                                   myViewPager.setPageTransformer(true, bookFlipPageTransformer);
-                                   dialog.dismiss();
-
-
-                               }
-                           }, new Consumer<Throwable>() {
-                               @Override
-                               public void accept(Throwable throwable) throws Exception {
-                                   Toast.makeText(ViewDetail.this, "This chapter í being tránlating", Toast.LENGTH_LONG).show();
-                                   dialog.dismiss();
-                               }
-                           }
-                ));
-
-    }*/
-//}
