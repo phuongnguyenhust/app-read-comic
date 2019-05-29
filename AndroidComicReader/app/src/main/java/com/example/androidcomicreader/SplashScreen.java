@@ -10,14 +10,14 @@ public class SplashScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // no need setcontentview because we use Theme
-
+        // không cần sử dụng setcontentview
+      // tạo đối tượng Handler để thiết lập thời gian chờ khi vào giao diện chính của app
         new Handler().postDelayed(new Runnable(){
             public void run(){
                 startActivity(new Intent(SplashScreen.this,MainActivity.class));
                 finish();
             }
-        }, 3000);
+        }, 3000);// thời gian chờ 3000 ms
 
     }
 }

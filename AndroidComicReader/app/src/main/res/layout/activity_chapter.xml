@@ -5,13 +5,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
+    android:background="@android:color/white"
     tools:context=".ChapterActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:minHeight="?attr/actionBarSize"
-        android:background="@android:color/black"
+        android:background="@android:color/darker_gray"
         app:titleTextColor="@color/textColor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

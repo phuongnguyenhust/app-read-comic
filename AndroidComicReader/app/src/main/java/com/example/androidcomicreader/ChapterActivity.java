@@ -56,7 +56,7 @@ public class ChapterActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        db.openDataBase();
+         //  db.openDataBase();
         c = db.queryChapter();
 
         // end them new
@@ -116,18 +116,23 @@ public class ChapterActivity extends AppCompatActivity {
 
             case "Dragon Ball" :
                 c.moveToFirst();
-                while ((!c.isAfterLast())&& (c.getInt(2) == 1)){
-                      Chapter chapter = new Chapter(c.getInt(0), c.getString(1));
+                while ((!c.isAfterLast()) ){
+                    if((c.getInt(2) == 1)) {
+                        Chapter chapter = new Chapter(c.getInt(0), c.getString(1));
                         chapterList.add(chapter);
                         c.moveToNext();
-
                     }
+                    else{
+                        c.moveToNext();
+                    }
+
+                }
 
                 adapter = new MyChapterAdapter(ChapterActivity.this, chapterList);
                 recycler_chapter.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 break;
-              case "Spider-Man":
+              case "The Amazing Spider-Man (1963)":
                 c.moveToFirst();
                 while (!c.isAfterLast()){
                     if(c.getInt(2) == 2){
@@ -146,6 +151,144 @@ public class ChapterActivity extends AppCompatActivity {
 
 
                 break;
+            case "Spider-Man":
+                c.moveToFirst();
+                while (!c.isAfterLast()){
+                    if(c.getInt(2) == 4){
+                        Chapter chapter = new Chapter(c.getInt(0), c.getString(1));
+                        chapterList.add(chapter);
+                        c.moveToNext();
+                    }
+
+                    else{
+                        c.moveToNext();
+                    }
+                }
+                adapter = new MyChapterAdapter(ChapterActivity.this, chapterList);
+                recycler_chapter.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+      break;
+
+            case "The Invincible Iron Man":
+                c.moveToFirst();
+                while (!c.isAfterLast()){
+                    if(c.getInt(2) == 5){
+                        Chapter chapter = new Chapter(c.getInt(0), c.getString(1));
+                        chapterList.add(chapter);
+                        c.moveToNext();
+                    }
+
+                    else{
+                        c.moveToNext();
+                    }
+                }
+                adapter = new MyChapterAdapter(ChapterActivity.this, chapterList);
+                recycler_chapter.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+
+
+                break;
+            case "Ant-Man & The Wasp":
+                c.moveToFirst();
+                while (!c.isAfterLast()){
+                    if(c.getInt(2) == 6){
+                        Chapter chapter = new Chapter(c.getInt(0), c.getString(1));
+                        chapterList.add(chapter);
+                        c.moveToNext();
+                    }
+
+                    else{
+                        c.moveToNext();
+                    }
+                }
+                adapter = new MyChapterAdapter(ChapterActivity.this, chapterList);
+                recycler_chapter.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+
+
+                break;
+
+            case "Marvel Zombies":
+                c.moveToFirst();
+                while (!c.isAfterLast()){
+                    if(c.getInt(2) == 7){
+                        Chapter chapter = new Chapter(c.getInt(0), c.getString(1));
+                        chapterList.add(chapter);
+                        c.moveToNext();
+                    }
+
+                    else{
+                        c.moveToNext();
+                    }
+                }
+                adapter = new MyChapterAdapter(ChapterActivity.this, chapterList);
+                recycler_chapter.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+
+
+                break;
+
+            case "Avengers":
+                c.moveToFirst();
+                while (!c.isAfterLast()){
+                    if(c.getInt(2) == 8){
+                        Chapter chapter = new Chapter(c.getInt(0), c.getString(1));
+                        chapterList.add(chapter);
+                        c.moveToNext();
+                    }
+
+                    else{
+                        c.moveToNext();
+                    }
+                }
+                adapter = new MyChapterAdapter(ChapterActivity.this, chapterList);
+                recycler_chapter.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+
+
+                break;
+
+            case "X-men Wolverine":
+                c.moveToFirst();
+                while (!c.isAfterLast()){
+                    if(c.getInt(2) == 9){
+                        Chapter chapter = new Chapter(c.getInt(0), c.getString(1));
+                        chapterList.add(chapter);
+                        c.moveToNext();
+                    }
+
+                    else{
+                        c.moveToNext();
+                    }
+                }
+                adapter = new MyChapterAdapter(ChapterActivity.this, chapterList);
+                recycler_chapter.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+
+
+                break;
+
+            case "Batman":
+                c.moveToFirst();
+                while (!c.isAfterLast()){
+                    if(c.getInt(2) == 10){
+                        Chapter chapter = new Chapter(c.getInt(0), c.getString(1));
+                        chapterList.add(chapter);
+                        c.moveToNext();
+                    }
+
+                    else{
+                        c.moveToNext();
+                    }
+                }
+                adapter = new MyChapterAdapter(ChapterActivity.this, chapterList);
+                recycler_chapter.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+
+
+                break;
+
+
 
         }
 

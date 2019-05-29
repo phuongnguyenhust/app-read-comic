@@ -33,15 +33,17 @@ public class MyViewPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public boolean isViewFromObject(@NonNull View view, @NonNull Object o) {
-        return false;
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object o)
+    {
+        return view.equals(o);
     }
 
     //Ctrl+O
 
     @Override
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        super.destroyItem(container, position, object);
+     // bo moi  super.destroyItem(container, position, object);
+        container.removeView((View)object);
     }
 
     @NonNull

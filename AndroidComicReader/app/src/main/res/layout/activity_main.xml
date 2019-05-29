@@ -3,11 +3,35 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="@android:color/black"
+    android:background="@android:color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:id="@+id/drawer_layout">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:background="@color/textColor"
+        android:weightSum="6"
+        >
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="@color/cardview_dark_background"
+            android:text="APP COMIC"
+            android:textAlignment="center"
+            android:layout_gravity="center_horizontal"
+            android:textSize="60px"/>
+        <ImageView
+            android:id="@+id/btn_show_filter_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_search_gray_24dp"
+            />
+    </LinearLayout>
 
     <ss.com.bannerslider.Slider
         android:id="@+id/banner_slider"
@@ -15,12 +39,25 @@
         android:layout_height="wrap_content">
     </ss.com.bannerslider.Slider>
 
+
+    <!--linearLayout android:orientation ="horizontal"
+        android:padding = "16dp"
+        android:background = "@color/green"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+    </linearLayout-->
+
     <LinearLayout
         android:orientation="horizontal"
         android:padding="16dp"
-        android:weightSum="4"
+        android:weightSum="3"
+        android:layout_marginTop="4dp"
+        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
 
     <TextView
         android:id="@+id/txt_comic"
@@ -39,6 +76,7 @@
             android:layout_weight="2"
             android:background="@drawable/horizontal_line" />
 </LinearLayout>
+
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_comic"

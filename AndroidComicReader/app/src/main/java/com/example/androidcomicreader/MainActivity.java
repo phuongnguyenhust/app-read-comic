@@ -13,7 +13,10 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 //import android.support.v7.app.AlertController.RecycleListView
+import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -40,7 +43,7 @@ import io.reactivex.schedulers.Schedulers;
 import ss.com.bannerslider.Slider;
 
 //public class MainActivity extends AppCompatActivity {
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     public final static String ID_EXTRA = "comic ID";
 
@@ -268,6 +271,44 @@ public class MainActivity extends AppCompatActivity {
     }*/
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.my_menu, menu);
+        MenuItem searchview = menu.findItem(R.id.itSearchView);
+        SearchView searchView = (SearchView) searchview.getActionView();
+        searchView.setOnQueryTextListener(MainActivity.this);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.itSearchView) {
+            Toast.makeText(MainActivity.this, "Bạn đã click vào Menu: "+ item.getTitle(),Toast.LENGTH_SHORT).show();
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String s) {
+        Toast.makeText(MainActivity.this, s ,Toast.LENGTH_SHORT).show();
+        return false;
     }
 }
 

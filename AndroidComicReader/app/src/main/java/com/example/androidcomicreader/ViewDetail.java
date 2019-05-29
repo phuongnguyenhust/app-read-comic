@@ -28,7 +28,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class ViewDetail extends AppCompatActivity {
-    IComicAPI iComicAPI;
+   IComicAPI iComicAPI;
     ViewPager myViewPager;
     CompositeDisposable compositeDisposable = new CompositeDisposable();
     TextView txt_chapter_name;
@@ -54,7 +54,7 @@ public class ViewDetail extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        db.openDataBase();
+       // db.openDataBase();
         c = db.queryLink();
 
         // end them new
@@ -83,10 +83,76 @@ public class ViewDetail extends AppCompatActivity {
 //
 //
 //        }
+
+//        switch (Common.selected_comic.getName()){
+//            case " Dragon Ball" :
+//            {
+//                switch (Common.selected_chapter.getName()) {
+//                    case "Chapter 1 : Bloomers and the Monkey King" :
+//                    {
+////                        back.setOnClickListener(new View.OnClickListener() {
+////                            @Override
+////                            public void onClick(View view) {
+////                                if (Common.chapter_index == 0) {
+////                                    Toast.makeText(ViewDetail.this, "You are reading chapter", Toast.LENGTH_SHORT).show();
+////
+////                                } else {
+//                                  //  Common.chapter_index--;
+//                                  //  fetchLinks(Common.chapterList.get(Common.chapter_index).getID());
+//
+//                                   c.moveToFirst();
+//                                    while ((!c.isAfterLast())&& (c.getInt(2) == 13)){
+//                                        Link link = new Link(c.getInt(0), c.getString(1), 13);
+//                                        linkList.add(link);
+//                                        c.moveToNext();
+//
+//                                    }
+//
+//                                    adapter = new MyViewPagerAdapter(ViewDetail.this, linkList);
+//                                    myViewPager.setAdapter(adapter);
+//
+//                                    txt_chapter_name.setText(Common.formatString(Common.selected_chapter.getName()));
+//
+//                                    //Create book Flip page
+//                                    BookFlipPageTransformer bookFlipPageTransformer = new BookFlipPageTransformer();
+//                                    bookFlipPageTransformer.setScaleAmountPercent(10f);
+//                                    myViewPager.setPageTransformer(true, bookFlipPageTransformer);
+//                                    dialog.dismiss();
+//
+//                                    adapter.notifyDataSetChanged();
+//                                    break;
+//
+//                     }
+//
+//                    case "k":
+//                        break;
+//
+//                }
+//                    //    });
+//
+//                        next.setOnClickListener(new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View v) {
+//                                if (Common.chapter_index == Common.chapterList.size() - 1) // if user in last chapter but press nẽt
+//                                {
+//                                    Toast.makeText(ViewDetail.this, "You are reading chapter", Toast.LENGTH_SHORT).show();
+//
+//                                } else {
+//                                    Common.chapter_index++;
+//                                  //  fetchLinks(Common.chapterList.get(Common.chapter_index).getID());
+//
+//                                }
+//                            }
+//                        });
+//
+
+
+
  //           }
         //}
 
 
+//}
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,11 +184,12 @@ public class ViewDetail extends AppCompatActivity {
             }
         });
         fetchLinks(Common.selected_chapter.getID());
+
     }
     private void fetchLinks(int id){
-        c.moveToFirst();
+       c.moveToFirst();
         while ((!c.isAfterLast()) ){
-            if((c.getInt(2) == id)) {
+            if(((c.getInt(2))== id)) {
                 Link link = new Link(c.getInt(0), c.getString(1));
                 linkList.add(link);
                 c.moveToNext();
@@ -131,17 +198,20 @@ public class ViewDetail extends AppCompatActivity {
                 c.moveToNext();
             }
         }
-        MyViewPagerAdapter myViewPagerAdapter = new MyViewPagerAdapter(ViewDetail.this, linkList);
-        myViewPager.setAdapter(myViewPagerAdapter);
+         if(linkList.size() >0) {
+             MyViewPagerAdapter myViewPagerAdapter = new MyViewPagerAdapter(ViewDetail.this, linkList);
+             myViewPager.setAdapter(myViewPagerAdapter);
+         }else {
+
+             Toast.makeText(ViewDetail.this, "No image here", Toast.LENGTH_SHORT).show();
+         }
+
         txt_chapter_name.setText(Common.formatString(Common.selected_chapter.getName()));
 
         //Create book Flip page
         BookFlipPageTransformer bookFlipPageTransformer = new BookFlipPageTransformer();
         bookFlipPageTransformer.setScaleAmountPercent(10f);
         myViewPager.setPageTransformer(true, bookFlipPageTransformer);
-
-
-
 
     }
 
