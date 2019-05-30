@@ -7,6 +7,7 @@ import com.squareup.picasso.Picasso;
 import ss.com.bannerslider.ImageLoadingService;
 
 public class PicassoImageLoadingService implements ImageLoadingService {
+    // phương thức khởi tạo để download ảnh với 2 tham số: url và imageview
     @Override
     public void loadImage(String url, ImageView imageView) {
         Picasso.get().load(url).into(imageView);

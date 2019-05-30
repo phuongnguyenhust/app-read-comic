@@ -57,19 +57,19 @@ public class FilterSearchActivity extends AppCompatActivity {
      //   db.openDataBase();
         c = db.queryComic();
 
-        // end them new
-
         bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_nav);
         bottomNavigationView.inflateMenu(R.menu.main_menu);
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId())
                 {
+                    // trường hợp người dùng lựa chọn filter- tìm kiếm theo thể loại
                     case R.id.action_filter :
                         showFilterDialog();
-
                         break;
+                        // trường hợp người dùng lựa chọn search - tìm kiếm theo tên truyện
                     case R.id.action_search :
                         showSearchDialog();
                         break;
@@ -82,16 +82,15 @@ public class FilterSearchActivity extends AppCompatActivity {
     }
 
     private void showSearchDialog() {
-        Toast.makeText(FilterSearchActivity.this, "thong báo", Toast.LENGTH_SHORT).show();
-       // AlertDialog.Builder alertDialog = new AlertDialog.Builder(FilterSearchActivity.this);
+        // tạo alertDialog để thực hiện tìm kiếm theo tên truyện
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(FilterSearchActivity.this);
         alertDialog.setTitle("Search");
-
-         LayoutInflater inflater = this.getLayoutInflater();
+        LayoutInflater inflater = this.getLayoutInflater();
+        // sử dụng layout dialog_search để thực hiện nhập dữ liệu (tên truyện) khi muốn tìm kiếm
         View search_layout = inflater.inflate(R.layout.dialog_search, null);
         final EditText edit_search = (EditText)search_layout.findViewById(R.id.edit_search);
         alertDialog.setView(search_layout);
-
+        // trong hộp alertDialog  nếu người dùng lựa chọn Cancel thì hủy bỏ tìm kiếm
         alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -99,6 +98,7 @@ public class FilterSearchActivity extends AppCompatActivity {
 
             }
         });
+        // còn lựa chọn Search thì sẽ thực hiện quá trình tìm kiếm
         alertDialog.setPositiveButton("Search", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
@@ -106,19 +106,21 @@ public class FilterSearchActivity extends AppCompatActivity {
 
             }
         });
-        alertDialog.show();
+        alertDialog.show();// hiển thi alertDialog  ra màn hình
 
     }
 
-    private void fetchSearchComic(String query) {
-        Toast.makeText(FilterSearchActivity.this, "ten" + query, Toast.LENGTH_SHORT ).show();
+    private void fetchSearchComic(String query) {// query là chuỗi nhập vào trong editText
+
         List<Comic> comic_search = new ArrayList<>();
         c.moveToFirst();
 
         while (!c.isAfterLast()) {
 
-            if (c.getString(1).equalsIgnoreCase(query)) {
+            if (c.getString(1).equalsIgnoreCase(query)) {// nếu tìm thấy
+                // tạo đối tượng comic tương ứng
                 Comic comic = new Comic(c.getInt(0), c.getString(1), c.getString(2));
+                //thêm vào danh sách truyện tìm được
                 comic_search.add(comic);
                 c.moveToNext();
 
@@ -128,10 +130,10 @@ public class FilterSearchActivity extends AppCompatActivity {
 
         }
 
-        if(comic_search.size() > 0){
+        if(comic_search.size() > 0){// danh sách tìm kiếm khác rỗng
             recycler_filter_search.setAdapter(new MyComicAdapter(getBaseContext(), comic_search));
         }
-        else{
+        else{// tìm kiếm rỗng đưa ra thông báo cho người dùng
             Toast.makeText(FilterSearchActivity.this, "Không tìm thấy truyện" + query, Toast.LENGTH_SHORT).show();
         }
 
@@ -140,8 +142,6 @@ public class FilterSearchActivity extends AppCompatActivity {
 
 
     private void showFilterDialog() {
-        Toast.makeText(FilterSearchActivity.this, "thong báo", Toast.LENGTH_SHORT).show();
-        // AlertDialog.Builder alertDialog = new AlertDialog.Builder(FilterSearchActivity.this);
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(FilterSearchActivity.this);
         alertDialog.setTitle("Search Category");
 
@@ -190,108 +190,9 @@ public class FilterSearchActivity extends AppCompatActivity {
             recycler_filter_search.setAdapter(new MyComicAdapter(getBaseContext(), comic_search_category));
         }
         else{
-            Toast.makeText(FilterSearchActivity.this, "Không tìm thấy truyện" + query, Toast.LENGTH_SHORT).show();
+            Toast.makeText(FilterSearchActivity.this, "Không tìm thấy truyện thuộc loại" + query, Toast.LENGTH_SHORT).show();
         }
 
     }
-
-
-//    private void showFilterDialog() {
-//        AlertDialog.Builder alertDialog = new AlertDialog.Builder(FilterSearchActivity.this);
-//        alertDialog.setTitle("Selected Category");
-//
-//        final LayoutInflater inflater = this.getLayoutInflater();
-//        View filter_layout = inflater.inflate(R.layout.dialog_option, null);
-//
-////        final AutoCompleteTextView txt_category = (AutoCompleteTextView)filter_layout.findViewById(R.id.txt_category);
-////        final ChipGroup chipGroup = (ChipGroup)filter_layout.findViewById(R.id.chipGroup);
-////
-////       //Create autocomplete
-////        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.select_dialog_item, Common.categories);
-////        txt_category.setAdapter(adapter);
-////        txt_category.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-////            @Override
-////            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-////                //Clear
-////                txt_category.setText("");
-////
-////                //Create tags
-////                Chip chip = (Chip)inflater.inflate(R.layout.chip_item, null, false);
-////                chip.setText(((TextView)view).getText());
-////                chip.setOnCloseIconClickListener(new View.OnClickListener() {
-////                    @Override
-////                    public void onClick(View v) {
-////                        chipGroup.removeView(v);
-////                    }
-////                });
-////                chipGroup.addView(chip);
-////            }
-////        });
-////
-////        alertDialog.setView(filter_layout);
-////        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-////            @Override
-////            public void onClick(DialogInterface dialogInterface, int i) {
-////                dialogInterface.dismiss();
-////
-////            }
-////        });
-////        alertDialog.setPositiveButton("FILTER", new DialogInterface.OnClickListener() {
-////            @Override
-////            public void onClick(DialogInterface dialogInterface, int i) {
-////                List<String> filter_key = new ArrayList<>();
-////                StringBuilder filter_query = new StringBuilder("");
-////                for (int j=0;j<chipGroup.getChildCount(); j++){
-////                    Chip chip = (Chip)chipGroup.getChildAt(j);
-////                    filter_key.add(chip.getText().toString());
-////
-////                }
-////
-////                //bởi vì trong database, category lưu tu A-Z và
-////                // nên chúng ta cần sort our filter_key
-////                Collections.sort(filter_key);
-////                //chuyển list sang string
-////                for(String key:filter_key){
-////                    filter_query.append(key).append(",");
-////
-////                }
-////                //xóa dấu"," ở cuối
-////                filter_query.setLength(filter_query.length()-1);
-////
-////                //
-////                fetchFilerCategory(filter_query.toString());
-////
-////            }
-////        });
-//        alertDialog.show();
-//
-//    }
-//
-//    private void fetchFilerCategory(String query) {
-//        //Toast.makeText(FilterSearchActivity.this, "ten" + query, Toast.LENGTH_SHORT ).show();
-//        List<Comic> comic_category_search = new ArrayList<>();
-//        c.moveToFirst();
-//
-//        while (!c.isAfterLast()) {
-//
-//            if (c.getString(3).equalsIgnoreCase(query)) {
-//                Comic comic = new Comic(c.getInt(0), c.getString(1), c.getString(2));
-//                comic_category_search.add(comic);
-//                c.moveToNext();
-//
-//            } else {
-//                c.moveToNext();
-//            }
-//
-//        }
-//
-//        if(comic_category_search.size() > 0){
-//            recycler_filter_search.setAdapter(new MyComicAdapter(getBaseContext(), comic_category_search));
-//        }
-//        else{
-//            Toast.makeText(FilterSearchActivity.this, "Không tìm thấy truyện có thể loại" + query, Toast.LENGTH_SHORT).show();
-//        }
-//
-//    }
 
 }

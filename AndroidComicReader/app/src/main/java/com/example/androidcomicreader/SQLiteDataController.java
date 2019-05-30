@@ -26,10 +26,9 @@ public class SQLiteDataController extends SQLiteOpenHelper {
         this.mContext = con;
     }
     public boolean isCreatedDatabase() throws IOException {
-        // Default là đã có DB
+        // Default là đã có DB  Nếu chưa tồn tại DB thì copy từ Asses vào Data
         boolean result = true;
-        // Nếu chưa tồn tại DB thì copy từ Asses vào Data
-        // if (!checkExistDataBase()) {
+        // lấy dữ liệu đọc từ đatabase
         this.getReadableDatabase();
         try {
             copyDataBase();
@@ -38,18 +37,16 @@ public class SQLiteDataController extends SQLiteOpenHelper {
             throw new Error("Error copying database");// bắt lỗi thông báo lỗi
         }
         this.close();
-
-
         return result;
     }
     // phương thức kiểm tra database đã tồn tại chưa
     private boolean checkExistDataBase() {
         try {
-            /// lấy đương dẫn đến database
+            /// lấy đường dẫn đến database
             String myPath = DB_PATH + DB_NAME;
 
             File fileDB = new File(myPath);
-            // nếu tồn tại trả về giá trị true
+            // nếu tồn tại file lưu trữ database trả về giá trị true
             if (fileDB.exists()) {
                 return true;
             } else
@@ -58,7 +55,8 @@ public class SQLiteDataController extends SQLiteOpenHelper {
             return false;
         }
     }
-    // copy cở sỡ dữ liệu trong file sẵn có
+
+    // copy cở sỡ dữ liệu trong file
 
     private void copyDataBase() throws IOException {
         InputStream myInput = mContext.getAssets().open(DB_NAME);

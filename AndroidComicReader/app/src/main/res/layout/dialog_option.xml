@@ -28,7 +28,7 @@
 -->
         <EditText
             android:id="@+id/edit_search_category"
-            android:hint="Enter name"
+            android:hint="Enter name category"
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

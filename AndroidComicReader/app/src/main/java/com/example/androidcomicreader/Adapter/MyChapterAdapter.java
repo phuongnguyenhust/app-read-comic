@@ -21,11 +21,10 @@ import java.util.concurrent.Callable;
 public class MyChapterAdapter extends RecyclerView.Adapter<MyChapterAdapter.MyViewHolder> {
     Context context;
     List<Chapter> chapterList;
-   // public  static int ID;
     public  MyChapterAdapter(Context context, List<Chapter> chapterList){
         this.context = context;
         this.chapterList = chapterList;
-      //  this.ID = ID;
+
 
     }
 
@@ -38,20 +37,19 @@ public class MyChapterAdapter extends RecyclerView.Adapter<MyChapterAdapter.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
-
+        // thay đổi, cập nhật lại tên chapter tương ứng
         myViewHolder.txt_chapter_number.setText(new StringBuilder(chapterList.get(i).Name));
-
-
-
+        // gán chapter hiện tại cho chapter đang được chọn
         Common.selected_chapter = chapterList.get(i);
         Common.chapter_index = i;
 
-
+        // xử lí khi người dùng click vào một chapter cụ thể
         myViewHolder.setiRecyclerOnClick(new IRecyclerOnClick() {
             @Override
             public void onClick(View view, int position) {
                 Common.selected_chapter = chapterList.get(position);
                 Common.chapter_index = position;
+                // chuyển sang một Activity mới - ViewDetail
                 context.startActivity(new Intent(context,ViewDetail.class));
 
             }

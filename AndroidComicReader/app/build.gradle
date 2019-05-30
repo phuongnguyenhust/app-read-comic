@@ -42,6 +42,8 @@ dependencies {
     implementation 'com.github.chrisbanes:PhotoView:2.1.0'
 
     //picasso - trình chiếu hình và caching
+
+
     implementation 'com.squareup.picasso:picasso:2.71828'
 
     // banner slider

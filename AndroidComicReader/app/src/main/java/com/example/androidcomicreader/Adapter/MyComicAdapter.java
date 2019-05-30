@@ -23,7 +23,7 @@ public class MyComicAdapter extends RecyclerView.Adapter<MyComicAdapter.MyViewHo
 
     Context context;
     List<Comic> comicList;
-
+    // hàm khởi tạo của class MyComicAdapter
     public MyComicAdapter(Context context, List<Comic> comicList){
         this.context = context;
         this.comicList = comicList;
@@ -34,22 +34,21 @@ public class MyComicAdapter extends RecyclerView.Adapter<MyComicAdapter.MyViewHo
     @Override
     public MyComicAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View itemView= LayoutInflater.from(context).inflate(R.layout.comic_item,viewGroup,false);
-
         return new MyViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, int i) {
+        // load ảnh thông qua đường dẫn  sử dụng Picasso
         Picasso.get().load(comicList.get(i).getImage()).into(myViewHolder.imageView);
+        // thay đổi lại tên truyện tương ứng
         myViewHolder.textView.setText(comicList.get(i).getName());
-
-        //Remember implement it, ì you do that, your app when crash when onClick to comic
+        // xử lí sự kiện khi người dùng click vào các truyện
         myViewHolder.setiRecyclerOnClick(new IRecyclerOnClick() {
             @Override
             public void onClick(View view, int position) {
-                //Start new activity
+                // tạo một activity mới , để chuyển sang activity ChapterActivity
                 context.startActivity(new Intent(context, ChapterActivity.class));
-
                 Common.selected_comic = comicList.get(position);
 
             }
@@ -57,6 +56,7 @@ public class MyComicAdapter extends RecyclerView.Adapter<MyComicAdapter.MyViewHo
 
     }
 
+    // phương thức trả về số comic có trong danh sách truyện
     @Override
     public int getItemCount() {
         return comicList.size();
@@ -76,7 +76,6 @@ public class MyComicAdapter extends RecyclerView.Adapter<MyComicAdapter.MyViewHo
 
             imageView=(ImageView)itemView.findViewById(R.id.image_view);
             textView=(TextView)itemView.findViewById(R.id.manga_name);
-
             itemView.setOnClickListener(this);
         }
 
