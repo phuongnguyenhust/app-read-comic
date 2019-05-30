@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
        // lấy dữ liệu từ bảng Comic
-        SQLiteDataController db = new SQLiteDataController(this);
+        SQLiteDataController db =  SQLiteDataController.getInstance(this);
         try {
             db.isCreatedDatabase();
         } catch (IOException e) {

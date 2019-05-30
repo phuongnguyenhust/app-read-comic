@@ -13,18 +13,27 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 public class SQLiteDataController extends SQLiteOpenHelper {
+    private static SQLiteDataController instance;
 
     // đường dẫn nơi chứa database
     public String DB_PATH = "//data//data//%s//databases//";
 
     private static String DB_NAME = "Story.sqlite";// tên database
     public SQLiteDatabase database;
-    private final Context mContext;
+    private static Context mContext;
     public SQLiteDataController(Context con) {
         super(con, DB_NAME, null, 1);
         DB_PATH = String.format(DB_PATH, con.getPackageName());
         this.mContext = con;
     }
+
+    public static SQLiteDataController getInstance(Context mContext){
+        if (instance == null){ //if there is no instance available... create new one
+            instance = new SQLiteDataController(mContext);
+        }
+        return instance;
+    }
+
     public boolean isCreatedDatabase() throws IOException {
         // Default là đã có DB  Nếu chưa tồn tại DB thì copy từ Asses vào Data
         boolean result = true;
@@ -91,6 +100,8 @@ public class SQLiteDataController extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.execSQL("DROP TABLE IF EXISTS " + DB_NAME);
+        onCreate(db);
 
     }
 

@@ -46,7 +46,7 @@ public class ViewDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_detail);
        // tạo đối tương db để thao tác với dữ liệu trong database
-        SQLiteDataController db = new SQLiteDataController(this);
+        SQLiteDataController db =  SQLiteDataController.getInstance(this);
         try {
             db.isCreatedDatabase();
         } catch (IOException e) {

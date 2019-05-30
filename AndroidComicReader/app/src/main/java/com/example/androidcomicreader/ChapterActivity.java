@@ -39,7 +39,7 @@ public class ChapterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chapter);
         // khởi tạo đối tượng db - dữ liệu sử dụng
-        SQLiteDataController db = new SQLiteDataController(this);
+        SQLiteDataController db =  SQLiteDataController.getInstance(this);
         try {
             db.isCreatedDatabase();
         } catch (IOException e) {

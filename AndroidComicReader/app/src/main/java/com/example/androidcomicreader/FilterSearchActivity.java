@@ -48,7 +48,7 @@ public class FilterSearchActivity extends AppCompatActivity {
 
 
         // thêm new
-        SQLiteDataController db = new SQLiteDataController(this);
+        SQLiteDataController db = SQLiteDataController.getInstance(this);
         try {
             db.isCreatedDatabase();
         } catch (IOException e) {
